@@ -1,6 +1,7 @@
 body {
   font-family: 'Source Sans Pro', arial, helvetica, sans-serif;
-  padding-bottom: 50px;
+  margin: 0 auto;
+  width: fit-content;
 }
 h3 {
   margin-top: 50px;
@@ -16,4 +17,20 @@ td {
   width: 50%;
   vertical-align: top;
   padding-right: 60px;
+}
+
+.floating-box {
+  position: fixed;
+  bottom: 10px; /* Adjust as needed */
+  left: 10px; /* Adjust as needed */
+  width: 250px;
+  height: auto;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  overflow: auto;
+  display: none;
+  border-radius: 5px;
+  font-family: Arial, Helvetica;
 }

@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 
-// Copyright (c) 2017-2024 Zalando SE
+// Copyright (c) 2024 Sourabh Zanwar
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -58,7 +58,7 @@ function radar_visualization(config) {
     { x: -675, y: -420 };
 
   const footer_offset =
-    { x: -675, y: 420 };
+    { x: -80, y: 420 };
 
   const legend_offset = [
     { x: 450, y: 90 },
@@ -149,6 +149,7 @@ function radar_visualization(config) {
     var point = entry.segment.random();
     entry.x = point.x;
     entry.y = point.y;
+    entry.stroke = config.colors.stroke;
     entry.color = entry.active || config.print_layout ?
       config.rings[entry.ring].color : config.colors.inactive;
   }
@@ -192,7 +193,7 @@ function radar_visualization(config) {
   }
 
   // adjust with config.scale.
-  config.scale = config.scale || 1;
+  config.scale = config.scale || 0.90;
   var scaled_width = config.width * config.scale;
   var scaled_height = config.height * config.scale;
 
@@ -244,11 +245,11 @@ function radar_visualization(config) {
       .attr("cy", 0)
       .attr("r", rings[i].radius)
       .style("fill", config.rings[i].fill)
-      .style("opacity", 0.50);
+      .style("opacity", 0.40);
     if (config.print_layout) {
       grid.append("text")
         .text(config.rings[i].name)
-        .attr("y", -rings[i].radius + 62)
+        .attr("y", -rings[i].radius + 70)
         .attr("text-anchor", "middle")
         .style("fill", config.rings[i].color)
         .style("font-family", "Arial, Helvetica")
@@ -260,7 +261,7 @@ function radar_visualization(config) {
   }
 
   function legend_transform(quadrant, ring, index=null) {
-    var dx = ring < 2 ? 0 : 140;
+    var dx = 0;
     var dy = (index == null ? -16 : index * 12);
     if (ring % 2 === 1) {
       dy = dy + 36 + segmented[quadrant][ring-1].length * 12;
@@ -276,28 +277,28 @@ function radar_visualization(config) {
 
     // title
     radar.append("text")
-      .attr("transform", translate(title_offset.x, title_offset.y))
+      .attr("transform", translate(title_offset.x, title_offset.y+5))
       .text(config.title)
       .style("font-family", "Arial, Helvetica")
-      .style("font-size", "30")
+      .style("font-size", "36")
       .style("font-weight", "bold")
 
     // date
     radar
       .append("text")
-      .attr("transform", translate(title_offset.x, title_offset.y + 20))
+      .attr("transform", translate(title_offset.x, title_offset.y + 25))
       .text(config.date || "")
       .style("font-family", "Arial, Helvetica")
-      .style("font-size", "14")
+      .style("font-size", "16")
       .style("fill", "#999")
 
     // footer
     radar.append("text")
       .attr("transform", translate(footer_offset.x, footer_offset.y))
-      .text("▲ moved up     ▼ moved down")
+      .text("▲ moved up  ▼ moved down")
       .attr("xml:space", "preserve")
       .style("font-family", "Arial, Helvetica")
-      .style("font-size", "10px");
+      .style("font-size", "small");
 
     // legend
     var legend = radar.append("g");
@@ -316,7 +317,7 @@ function radar_visualization(config) {
           .attr("transform", legend_transform(quadrant, ring))
           .text(config.rings[ring].name)
           .style("font-family", "Arial, Helvetica")
-          .style("font-size", "12px")
+          .style("font-size", "large")
           .style("font-weight", "bold")
           .style("fill", config.rings[ring].color);
         legend.selectAll(".legend" + quadrant + ring)
@@ -334,9 +335,9 @@ function radar_visualization(config) {
               .attr("transform", function(d, i) { return legend_transform(quadrant, ring, i); })
               .attr("class", "legend" + quadrant + ring)
               .attr("id", function(d, i) { return "legendItem" + d.id; })
-              .text(function(d, i) { return d.id + ". " + d.label; })
+              .text(function(d, i) { return d.label; })
               .style("font-family", "Arial, Helvetica")
-              .style("font-size", "11px")
+              .style("font-size", "medium")
               .on("mouseover", function(d) { showBubble(d); highlightLegendItem(d); })
               .on("mouseout", function(d) { hideBubble(d); unhighlightLegendItem(d); });
       }
@@ -361,27 +362,49 @@ function radar_visualization(config) {
     .style("fill", "#333");
   bubble.append("text")
     .style("font-family", "sans-serif")
-    .style("font-size", "10px")
+    .style("font-size", "15px")
     .style("fill", "#fff");
   bubble.append("path")
     .attr("d", "M 0,0 10,0 5,8 z")
     .style("fill", "#333");
 
+
+    function convertHexToRGBA(hexColor) {
+
+      // Convert the hexadecimal color to RGB
+      var red = parseInt(hexColor.substring(1, 3), 16);
+      var green = parseInt(hexColor.substring(3, 5), 16);
+      var blue = parseInt(hexColor.substring(5, 7), 16);
+
+      // Specify the alpha value (opacity)
+      var alpha = 0.4; // For example, 50% opacity
+
+      // Construct the RGBA color value
+      var rgbaColor = 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + alpha + ')';
+
+      // Display the RGBA color value
+      return rgbaColor;
+    }
+
   function showBubble(d) {
     if (d.active || config.print_layout) {
       var tooltip = d3.select("#bubble text")
-        .text(d.label);
+        .text(d.label)
       var bbox = tooltip.node().getBBox();
       d3.select("#bubble")
-        .attr("transform", translate(d.x - bbox.width / 2, d.y - 16))
+        .attr("transform", translate(d.x - bbox.width / 2, d.y - 20))
         .style("opacity", 0.8);
       d3.select("#bubble rect")
         .attr("x", -5)
-        .attr("y", -bbox.height)
+        .attr("y", -bbox.height-3)
         .attr("width", bbox.width + 10)
-        .attr("height", bbox.height + 4);
+        .attr("height", bbox.height + 8);
       d3.select("#bubble path")
         .attr("transform", translate(bbox.width / 2 - 5, 3));
+      var floatingBox = document.getElementById('floatingBox');
+      floatingBox.innerHTML = '<u>' + d.label + "</u><br>&nbsp;<br>" + d.info;
+      floatingBox.style.backgroundColor = convertHexToRGBA(config.rings[d.ring].fill);
+      floatingBox.style.display = 'block';
     }
   }
 
@@ -389,6 +412,8 @@ function radar_visualization(config) {
     var bubble = d3.select("#bubble")
       .attr("transform", translate(0,0))
       .style("opacity", 0);
+    var floatingBox = document.getElementById('floatingBox');
+    floatingBox.style.display = 'none';
   }
 
   function highlightLegendItem(d) {
@@ -431,15 +456,18 @@ function radar_visualization(config) {
     if (d.moved > 0) {
       blip.append("path")
         .attr("d", "M -11,5 11,5 0,-13 z") // triangle pointing up
-        .style("fill", d.color);
+        .style("fill", d.color)
+        .style("stroke", d.stroke);
     } else if (d.moved < 0) {
       blip.append("path")
         .attr("d", "M -11,-5 11,-5 0,13 z") // triangle pointing down
-        .style("fill", d.color);
+        .style("fill", d.color)
+        .style("stroke", d.stroke);
     } else {
       blip.append("circle")
         .attr("r", 9)
-        .attr("fill", d.color);
+        .attr("fill", d.color)
+        .style("stroke", d.stroke);
     }
 
     // blip text
@@ -449,9 +477,10 @@ function radar_visualization(config) {
         .text(blip_text)
         .attr("y", 3)
         .attr("text-anchor", "middle")
-        .style("fill", "#fff")
+        .style("fill", "#000000")
         .style("font-family", "Arial, Helvetica")
-        .style("font-size", function(d) { return blip_text.length > 2 ? "8px" : "9px"; })
+        .style("font-size", function(d) { return blip_text.length > 2 ? "10px" : "11px"; })
+        .style("font-weight", "bold")
         .style("pointer-events", "none")
         .style("user-select", "none");
     }
