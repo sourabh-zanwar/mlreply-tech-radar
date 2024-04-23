@@ -10,30 +10,6 @@
       "info": "Generative AI, exemplified by ChatGPT and other models, has the potential to revolutionize industries like insurance by creating synthetic yet authentic data. While offering opportunities for personalized recommendations, faster product development, and enhanced decision-making, it also presents risks such as fake information creation and lack of transparency."
     },
     {
-      "quadrant": 1,
-      "ring": 0,
-      "label": "Platform Engineering",
-      "active": true,
-      "moved": 0,
-      "info": "Platform engineering is the practice of building and maintaining the foundational systems that power a company's products and services. This includes designing and implementing scalable, reliable, and secure platforms that enable developers to build and deploy applications more efficiently."
-    },
-    {
-      "quadrant": 2,
-      "ring": 0,
-      "label": "EU AI Act",
-      "active": true,
-      "moved": 0,
-      "info": "The EU AI Act is a comprehensive regulatory framework proposed by the European Union to govern artificial intelligence, focusing on ensuring AI systems are safe, transparent, and respect existing laws and rights. For AI consulting businesses, this act necessitates adherence to specific standards and risk assessments for AI deployments, potentially affecting project timelines and compliance costs."
-    },
-    {
-      "quadrant": 3,
-      "ring": 1,
-      "label": "Digital Twin",
-      "active": true,
-      "moved": 0,
-      "info": "A digital twin is a virtual replica of a physical system, process, or product, enabling real-time simulation and analysis through data and AI algorithms. This technology can optimize client operations and improve predictive capabilities (e.g., predictive maintenance) through detailed system insights."
-    },
-    {
       "quadrant": 0,
       "ring": 2,
       "label": "Deep Fake Defense",
@@ -64,6 +40,30 @@
       "active": true,
       "moved": 0,
       "info": "Knowledge graphs play a vital role in enhancing search results and insights by connecting data from various sources. They facilitate semantic enrichment through natural language processing, enabling advanced pattern recognition and data integration. However, leveraging knowledge graphs requires strategic intent, data management skills, and governance measures"
+    },
+    {
+      "quadrant": 1,
+      "ring": 0,
+      "label": "Platform Engineering",
+      "active": true,
+      "moved": 0,
+      "info": "Platform engineering is the practice of building and maintaining the foundational systems that power a company's products and services. This includes designing and implementing scalable, reliable, and secure platforms that enable developers to build and deploy applications more efficiently."
+    },
+    {
+      "quadrant": 2,
+      "ring": 0,
+      "label": "EU AI Act",
+      "active": true,
+      "moved": 0,
+      "info": "The EU AI Act is a comprehensive regulatory framework proposed by the European Union to govern artificial intelligence, focusing on ensuring AI systems are safe, transparent, and respect existing laws and rights. For AI consulting businesses, this act necessitates adherence to specific standards and risk assessments for AI deployments, potentially affecting project timelines and compliance costs."
+    },
+    {
+      "quadrant": 3,
+      "ring": 1,
+      "label": "Digital Twin",
+      "active": true,
+      "moved": 0,
+      "info": "A digital twin is a virtual replica of a physical system, process, or product, enabling real-time simulation and analysis through data and AI algorithms. This technology can optimize client operations and improve predictive capabilities (e.g., predictive maintenance) through detailed system insights."
     }
   ]
 }
