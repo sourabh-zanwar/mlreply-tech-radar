@@ -6,7 +6,7 @@
       "ring": 0,
       "label": "Generative AI",
       "active": true,
-      "moved": 1,
+      "moved": 0,
       "info": "Generative AI, exemplified by ChatGPT and other models, has the potential to revolutionize industries like insurance by creating synthetic yet authentic data. While offering opportunities for personalized recommendations, faster product development, and enhanced decision-making, it also presents risks such as fake information creation and lack of transparency."
     },
     {
@@ -14,8 +14,48 @@
       "ring": 0,
       "label": "Platform Engineering",
       "active": true,
-      "moved": 1,
+      "moved": 0,
       "info": "Platform engineering is the practice of building and maintaining the foundational systems that power a company's products and services. This includes designing and implementing scalable, reliable, and secure platforms that enable developers to build and deploy applications more efficiently."
+    },
+    {
+      "quadrant": 2,
+      "ring": 0,
+      "label": "EU AI Act",
+      "active": true,
+      "moved": 0,
+      "info": "The EU AI Act is a comprehensive regulatory framework proposed by the European Union to govern artificial intelligence, focusing on ensuring AI systems are safe, transparent, and respect existing laws and rights. For AI consulting businesses, this act necessitates adherence to specific standards and risk assessments for AI deployments, potentially affecting project timelines and compliance costs."
+    },
+    {
+      "quadrant": 4,
+      "ring": 1,
+      "label": "Digital Twin",
+      "active": true,
+      "moved": 0,
+      "info": "A digital twin is a virtual replica of a physical system, process, or product, enabling real-time simulation and analysis through data and AI algorithms. This technology can optimize client operations and improve predictive capabilities (e.g., predictive maintenance) through detailed system insights."
+    },
+    {
+      "quadrant": 0,
+      "ring": 2,
+      "label": "Deep Fake Defense",
+      "active": true,
+      "moved": 0,
+      "info": "Deep Fake Defense involves technologies and methodologies developed to detect and mitigate the effects of AI-generated synthetic media, which can create realistic but fraudulent images, videos, and audio. Offering deep fake detection services can provide a competitive edge, ensuring clients' digital security and integrity in an era of increasing synthetic content."
+    },
+    {
+      "quadrant": 0,
+      "ring": 1,
+      "label": "Synthetic Data Generation",
+      "active": true,
+      "moved": 0,
+      "info": "Synthetic data is programmatically created to mimic the statistical properties of real-world datasets, offering a privacy-safe alternative for analytical use. This technology enables AI consulting firms to enhance model training, protect privacy, and reduce data acquisition costs, driving innovation efficiently."
+    },
+    {
+      "quadrant": 0,
+      "ring": 1,
+      "label": "(LLM) Agents",
+      "active": true,
+      "moved": 0,
+      "info": "LLM-powered agents is a system that can use an LLM to reason through a problem, create a plan to solve the problem, and execute the plan with the help of a set of tools. Even though it is still in the research state, it has the potential to automate tasks such as accounting or even software engineering in the long-term."
     },
     {
       "quadrant": 0,
