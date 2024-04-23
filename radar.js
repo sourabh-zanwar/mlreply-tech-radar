@@ -260,17 +260,25 @@ function radar_visualization(config) {
     }
   }
 
-  function legend_transform(quadrant, ring, index=null) {
-    var dx = 0;
-    var dy = (index == null ? -16 : index * 12);
+  // function legend_transform(quadrant, ring, index=null) {
+  //   var dx = 0;
+  //   var dy = (index == null ? -16 : index * 12);
+  //   if (ring % 2 === 1) {
+  //     dy = dy + 36 + segmented[quadrant][ring-1].length * 12;
+  //   }
+  //   return translate(
+  //     legend_offset[quadrant].x + dx,
+  //     legend_offset[quadrant].y + dy
+  //   );
+  // }
+
+  function legend_transform(quadrant, ring, index = null) {
+    let dy = index === null ? -16 : index * 16; // Increase spacing dynamically
     if (ring % 2 === 1) {
-      dy = dy + 36 + segmented[quadrant][ring-1].length * 12;
+      dy += 36 + segmented[quadrant][ring - 1].length * 16; // Increase offset for rings with more entries
     }
-    return translate(
-      legend_offset[quadrant].x + dx,
-      legend_offset[quadrant].y + dy
-    );
-  }
+    return translate(legend_offset[quadrant].x, legend_offset[quadrant].y + dy);
+  }  
 
   // draw title and legend (only in print layout)
   if (config.print_layout) {
