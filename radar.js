@@ -273,12 +273,18 @@ function radar_visualization(config) {
   // }
 
   function legend_transform(quadrant, ring, index = null) {
-    let dy = index === null ? -16 : index * 16; // Increase spacing dynamically
-    if (ring % 2 === 1) {
-      dy += 36 + segmented[quadrant][ring - 1].length * 16; // Increase offset for rings with more entries
+    let dy = index === null ? -16 : index * 16; // Base vertical displacement for each entry
+    let offset = 36; // Initial offset for the first entry in each ring
+  
+    // Accumulate offsets from previous rings within the same quadrant
+    for (let i = 0; i < ring; i++) {
+      offset += (segmented[quadrant][i].length * 16) + 36;
     }
+  
+    dy += offset; // Apply the accumulated offset
+  
     return translate(legend_offset[quadrant].x, legend_offset[quadrant].y + dy);
-  }  
+  }
 
   // draw title and legend (only in print layout)
   if (config.print_layout) {
